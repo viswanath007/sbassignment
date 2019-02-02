@@ -39,12 +39,14 @@ export function addProduct(req, res) {
     upsert: true
   };
 
-  Product.findOneAndUpdate({userName}, update, options, (err, {products}) => {
+  Product.findOneAndUpdate({userName}, update, options, (err, doc) => {
     if (err) {
       res.status(500).send(err);
     } else {
       // console.log(product);
-      res.json({ product: products[products.length-1]});
+      const { products } = doc || {};
+      // res.json({ product: products[products.length-1]});
+      res.json({ products });
     }
   });
 
@@ -88,10 +90,11 @@ export function getProducts(req, res) {
     return;
   } 
   Product.findOne({ userName })
-    .exec((err, {products}) => {
+    .exec((err, doc) => {
     if (err) {
       res.status(500).send(err);
     }
+      const { products } = doc || {};
       res.json({ products });
   });
 }

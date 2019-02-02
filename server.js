@@ -9,7 +9,7 @@ import product from './api/routes/product.routes';
 import serverConfig from './config';
 
 // Set native promises as mongoose promise
-mongoose.Promise = global.Promise;
+mongoose.Promise = global.Promise; 
 
 // MongoDB Connection
 mongoose.connect(serverConfig.mongoURL, { useNewUrlParser: true })

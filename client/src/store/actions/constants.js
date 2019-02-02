@@ -1,2 +1,9 @@
 export const GET_CUSTOMERS = "GET_CUSTOMERS";
 export const UPDATE_CUSTOMER = "REMOVE_CUSTOMER";
+
+export const ADD_USER = "ADD_USER";
+export const AUTH_USER = "AUTH_USER";
+export const CHECK_USER_NAME_AVAILABILITY = "CHECK_USER_NAME_AVAILABILITY";
+
+export const ADD_PORDUCT = "ADD_PORDUCT";
+export const GET_PORDUCTS = "GET_PORDUCTS";

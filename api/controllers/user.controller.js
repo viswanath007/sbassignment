@@ -26,12 +26,14 @@ export function addUser(req, res) {
   }
   const newUser = new User(user);
 
-  newUser.save((err, {userName}) => {
+  newUser.save((err, doc) => {
     if (err) {
       res.status(500).send(err);
     } else {
       // console.log(saved);
-      res.json({ userName });
+      const { userName } = doc || {};
+      const isAutherised = userName ? true : false;
+      res.json({ isAutherised, userName });
     }
   });
 }
@@ -49,11 +51,13 @@ export function authenticateUser(req, res) {
     return;
   } 
   User.findOne({ userName, password })
-    .exec((err, {userName, dateAdded}) => {
+    .exec((err, doc) => {
     if (err) {
       res.status(500).send(err);
     }
-    res.json({ userName, dateAdded });
+    const { userName, dateAdded } = doc || {};
+    const isAutherised = userName ? true : false;
+    res.json({ isAutherised, userName, dateAdded });
   });
 }
 
@@ -71,10 +75,12 @@ export function checkUserExistance(req, res) {
     return;
   }
   User.findOne({ userName })
-    .exec((err, { userName, dateAdded}) => {
+    .exec((err, doc) => {
       if (err) {
         res.status(500).send(err);
-      } 
-      res.json({ userName, dateAdded });
+      }
+      const { userName, dateAdded } = doc || {};
+      const isAvailable = userName ? false : true;
+      res.json({ isAvailable, userName, dateAdded });
     }); 
 }

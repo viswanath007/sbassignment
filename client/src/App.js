@@ -1,25 +1,31 @@
-import React, { Component } from 'react'
-import { Provider } from 'react-redux'
-import logo from './logo.svg'
+import React, { Component, Fragment } from 'react'
+import { connect } from 'react-redux';
 import './App.css'
-import store from './store'
-import Customers from './components/Customer/customers'
+import Product from './components/Products/'
+import Signin from './components/Signin';
+import TopBar from './components/TopBar';
 
 class App extends Component {
 
   render () {
-    return (
-      <Provider store={ store }>
-        <div className="App">
-          <header className="App-header">
-            <img src={ logo } className="App-logo" alt="logo"/>
-            <h1 className="App-title">React/Redux Express Starter</h1>
-          </header>
-          <Customers/>
-        </div>
-      </Provider>
-    )
+    const {isAutherised} = this.props;
+    return isAutherised ?
+          (<Fragment>
+            <TopBar />
+            <Product />
+          </Fragment>) :
+        (<div className="App">
+          <Signin />
+        </div>)
+    
   }
 }
 
-export default App
+const mapStateToProps = (state) => {
+  const { isAutherised } = state.user;
+  return {
+    isAutherised,
+  };
+}
+
+export default connect(mapStateToProps, {})(App);
