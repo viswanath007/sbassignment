@@ -46,6 +46,7 @@ export function authenticateUser(req, res) {
   const { userName, password } = req.body;
   if (!userName || !password) {
     res.status(403).send({ error: "username and password are not provided" });
+    return;
   } 
   User.findOne({ userName, password })
     .exec((err, {userName, dateAdded}) => {

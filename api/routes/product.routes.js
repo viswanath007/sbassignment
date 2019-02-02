@@ -1,14 +1,11 @@
 import { Router } from 'express';
-import * as UserController from '../controllers/user.controller';
+import * as ProductController from '../controllers/product.controller';
 const router = new Router();
 
-// Save a user
-router.route('/user/add').post(UserController.addUser);
+// add product
+router.route('/product/add').post(ProductController.addProduct);
 
-// authenticate User
-router.route('/user/auth').post(UserController.authenticateUser);
-
-// check User Existance
-router.route('/user/checkExistance').post(UserController.checkUserExistance);
+// get all Products
+router.route('/product/getProducts').post(ProductController.getProducts);
 
 export default router;
