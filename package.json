@@ -1,0 +1,30 @@
+{
+  "name": "mern_app_assignment",
+  "version": "1.0.0",
+  "description": "MERN app assignment",
+  "main": "server.js",
+  "scripts": {
+    "client-install": "cd client && npm install",
+    "start": "node server.js",
+    "server": "nodemon --exec babel-node server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "author": "viswanath reddy",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.3.1"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "compression": "^1.7.3",
+    "concurrently": "^3.5.1",
+    "express": "^4.16.2",
+    "mongoose": "^5.4.9",
+    "nodemon": "^1.14.7",
+    "path": "^0.12.7",
+    "sanitize-html": "^1.20.0"
+  }
+}
